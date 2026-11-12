@@ -1,0 +1,200 @@
+
+/* CORES DO CÓDIGO ROSA */
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #49383d;
+  background: #fffafa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  --rosa-claro: #f7e9ec;
+  --rosa-medio: #d9a6b0;
+  --vinho: #8d5363;
+  --texto: #49383d;
+  --branco: #fffdfd;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: #fffafa;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+  flex: 1;
+}
+
+h1, h2, h3 {
+  color: var(--vinho);
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+p {
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+/* CABEÇALHO */
+header {
+  background: var(--rosa-claro);
+  padding: 25px 5%;
+  text-align: center;
+  border-bottom: 1px solid #efd8de;
+}
+
+header h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.menu a {
+  color: var(--vinho);
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  color: #56313d;
+}
+
+/* SEÇÕES */
+section {
+  background: var(--branco);
+  padding: 35px;
+  margin-bottom: 25px;
+  border: 1px solid #f0dfe3;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(141, 83, 99, 0.06);
+}
+
+/* CARTÕES DE CONTEÚDO */
+article {
+  background: var(--rosa-claro);
+  padding: 22px;
+  margin-top: 18px;
+  border-radius: 10px;
+}
+
+/* LINKS E BOTÕES */
+button,
+main a {
+  display: inline-block;
+  background: var(--vinho);
+  color: white;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover,
+main a:hover {
+  background: #6e3d4c;
+}
+
+/* FORMULÁRIOS */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 500px;
+  margin-top: 25px;
+}
+
+label {
+  font-weight: bold;
+  color: var(--vinho);
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #dfc3ca;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+}
+
+input:focus {
+  outline: 2px solid var(--rosa-medio);
+  border-color: var(--vinho);
+}
+
+form button {
+  margin-top: 10px;
+}
+
+/* RODAPÉ */
+footer {
+  background: var(--rosa-claro);
+  color: var(--texto);
+  text-align: center;
+  padding: 25px;
+  border-top: 1px solid #efd8de;
+}
+
+footer p {
+  margin: 5px;
+}
+
+/* CELULARES */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 25px;
+  }
+
+  .menu {
+    gap: 15px;
+  }
+
+  main {
+    width: 92%;
+    margin: 25px auto;
+  }
+
+  section {
+    padding: 22px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
