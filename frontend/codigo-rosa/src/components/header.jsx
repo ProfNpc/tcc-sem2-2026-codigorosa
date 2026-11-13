@@ -11,7 +11,9 @@ function Header() {
         <Link to="/sobre">Sobre</Link>
         <Link to="/conteudos">Conteúdos</Link>
         <Link to="/comunidade">Comunidade</Link>
-        <Link to="/cadastro">Cadastro</Link>
+        {/* <Link to="/cadastro">Cadastro</Link> */}
+        <Link to="/cursos">Cursos</Link>
+
         <Link to="/login">Entrar</Link>
       </nav>
     </header>
