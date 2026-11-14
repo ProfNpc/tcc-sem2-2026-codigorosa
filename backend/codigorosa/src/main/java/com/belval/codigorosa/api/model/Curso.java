@@ -1,6 +1,8 @@
 package com.belval.codigorosa.api.model;
 
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +12,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "curso")
-
 public class Curso {
 
     @Id
@@ -62,8 +63,9 @@ public class Curso {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    
 
-    public String getCategoria() {
+	public String getCategoria() {
         return categoria;
     }
 
@@ -85,5 +87,29 @@ public class Curso {
 
     public void setStatus(String status) {
         this.status = status;
-    }
+    }    
+
+    @Override
+	public String toString() {
+		return "Curso [idCurso=" + idCurso + ", nome=" + nome + ", descricao=" + descricao + ", categoria=" + categoria
+				+ ", nivel=" + nivel + ", status=" + status + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idCurso);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Curso other = (Curso) obj;
+		return Objects.equals(idCurso, other.idCurso);
+	}
+
 }
