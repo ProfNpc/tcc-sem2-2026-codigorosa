@@ -1,7 +1,7 @@
-// Camada de acesso à API REST de produtos.
+// Camada de acesso à API REST de cursos.
 // Cada função faz uma única chamada HTTP e lança erro se o status não for o esperado.
 
-const API_URL = 'http://localhost:8080/produtos';
+const API_URL = 'http://localhost:8080/cursos';
 
 async function lerErro(resposta) {
   let detalhe = '';
@@ -13,7 +13,7 @@ async function lerErro(resposta) {
   return new Error('Erro ' + resposta.status + (detalhe ? ': ' + detalhe : ''));
 }
 
-export async function listarProdutos() {
+export async function listarCursos() {
 
     console.log('Aqui...');
   /*
@@ -35,7 +35,7 @@ export async function listarProdutos() {
     ];
 }
 
-export async function buscarProduto(id) {
+export async function buscarCurso(id) {
   const resposta = await fetch(API_URL + '/' + id);
   if (!resposta.ok) {
     throw await lerErro(resposta);
@@ -43,29 +43,29 @@ export async function buscarProduto(id) {
   return resposta.json();
 }
 
-export async function criarProduto(produto) {
+export async function criarCurso(curso) {
   const resposta = await fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(produto)
+    body: JSON.stringify(curso)
   });
   if (resposta.status !== 201) {
     throw await lerErro(resposta);
   }
 }
 
-export async function atualizarProduto(id, produto) {
+export async function atualizarCurso(id, curso) {
   const resposta = await fetch(API_URL + '/' + id, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(produto)
+    body: JSON.stringify(curso)
   });
   if (!resposta.ok) {
     throw await lerErro(resposta);
   }
 }
 
-export async function apagarProduto(id) {
+export async function apagarCurso(id) {
   const resposta = await fetch(API_URL + '/' + id, {
     method: 'DELETE'
   });

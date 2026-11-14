@@ -9,6 +9,7 @@ import Conteudos from './pages/conteudos'
 import Comunidade from './pages/comunidade'
 import Cadastro from './pages/cadastro'
 import ListaCursos from './pages/ListaCursos'
+import EditarCurso from './pages/EditarCurso'
 import Login from './pages/login'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/comunidade" element={<Comunidade />} />
         {/* <Route path="/cadastro" element={<Cadastro />} /> */}
         <Route path="/cursos" element={<ListaCursos />} />
+        <Route path="/cursos/editar/:id" element={<EditarCurso />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/login" element={<Login />} />
       </Routes>

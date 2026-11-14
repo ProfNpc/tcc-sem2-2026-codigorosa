@@ -8,7 +8,6 @@ function Home () {
                 comunicação e habilidades pessoais e profissionais.
                 </p>
 
-                <a href="#sobre">Conhceça nosso projeto</a>
             </section>
 
             <section id="apresentacao">

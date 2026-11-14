@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { listarProdutos, apagarProduto } from '../services/cursoService';
+import { listarCursos, apagarCurso } from '../services/cursoService';
 import Modal from '../components/Modal';
 
 
@@ -21,24 +21,24 @@ function ListaCursos() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [produtos, setProdutos] = useState([]);
+  const [cursos, setCursos] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState('');
 
-  // Produto selecionado para exclusão (abre o modal de confirmação)
-  const [produtoParaApagar, setProdutoParaApagar] = useState(null);
+  // Curso selecionado para exclusão (abre o modal de confirmação)
+  const [cursoParaApagar, setCursoParaApagar] = useState(null);
   // Mensagem de sucesso exibida em modal
   const [mensagemSucesso, setMensagemSucesso] = useState('');
 
-  async function carregarProdutos() {
+  async function carregarCursos() {
     
     setCarregando(true);
     setErro('');
     try {
-      const lista = await listarProdutos();
-      setProdutos(lista);
+      const lista = await listarCursos();
+      setCursos(lista);
     } catch (e) {
-      setErro('Não foi possível carregar os produtos. ' + e.message);
+      setErro('Não foi possível carregar os cursos. ' + e.message);
     } finally {
       setCarregando(false);
     }
@@ -50,7 +50,7 @@ function ListaCursos() {
   // Se viemos de "Novo" ou "Editar" com uma mensagem, exibe o modal de sucesso.
   useEffect(() => {
     console.log('useEffect');
-    carregarProdutos();
+    carregarCursos();
     if (location.state && location.state.mensagem) {
       setMensagemSucesso(location.state.mensagem);
       // Limpa o state para o modal não reaparecer ao atualizar a página (F5)
@@ -58,24 +58,24 @@ function ListaCursos() {
     }
   }, [location.key]);
 
-  function abrirConfirmacaoApagar(produto) {
-    setProdutoParaApagar(produto);
+  function abrirConfirmacaoApagar(curso) {
+    setCursoParaApagar(curso);
   }
 
   function cancelarApagar() {
-    setProdutoParaApagar(null);
-    carregarProdutos();
+    setCursoParaApagar(null);
+    carregarCursos();
   }
 
   async function confirmarApagar() {
-    const produto = produtoParaApagar;
-    setProdutoParaApagar(null);
+    const curso = cursoParaApagar;
+    setCursoParaApagar(null);
     try {
-      await apagarProduto(produto.id);
-      await carregarProdutos();
-      setMensagemSucesso('Produto apagado com sucesso');
+      await apagarCurso(curso.id);
+      await carregarCursos();
+      setMensagemSucesso('Curso apagado com sucesso');
     } catch (e) {
-      setErro('Não foi possível apagar o produto. ' + e.message);
+      setErro('Não foi possível apagar o curso. ' + e.message);
     }
   }
 
@@ -101,10 +101,10 @@ function ListaCursos() {
     <main>
         <section id="inicio">
             <div>
-            <h1>Lista Produtos</h1>
+            <h1>Lista Cursos</h1>
 
             <div className="barra-topo">
-                <button className="botao botao-primario" onClick={() => navigate('/produtos/novo')}>
+                <button className="botao botao-primario" onClick={() => navigate('/cursos/novo')}>
                 + Novo
                 </button>
             </div>
@@ -127,24 +127,24 @@ function ListaCursos() {
                     </tr>
                 </thead>
                 <tbody>
-                    {produtos.length === 0 ? (
+                    {cursos.length === 0 ? (
                     <tr>
-                        <td colSpan="7" className="vazio">Nenhum produto cadastrado.</td>
+                        <td colSpan="7" className="vazio">Nenhum curso cadastrado.</td>
                     </tr>
                     ) : (
-                    produtos.map((produto) => (
-                        <tr key={produto.id}>
-                        <td>{produto.id}</td>
-                        <td>{produto.nome}</td>
-                        <td>{produto.descricao}</td>
-                        <td className="numero">{formatarPreco(produto.preco)}</td>
-                        <td>{formatarData(produto.dataCriacao)}</td>
+                    cursos.map((curso) => (
+                        <tr key={curso.id}>
+                        <td>{curso.id}</td>
+                        <td>{curso.nome}</td>
+                        <td>{curso.descricao}</td>
+                        <td className="numero">{formatarPreco(curso.preco)}</td>
+                        <td>{formatarData(curso.dataCriacao)}</td>
                         <td className="celula-acao">
                             <button
                             className="botao-icone botao-apagar"
-                            data-tooltip="Apagar produto"
-                            aria-label="Apagar produto"
-                            onClick={() => abrirConfirmacaoApagar(produto)}
+                            data-tooltip="Apagar curso"
+                            aria-label="Apagar curso"
+                            onClick={() => abrirConfirmacaoApagar(curso)}
                             >
                             X
                             </button>
@@ -152,9 +152,9 @@ function ListaCursos() {
                         <td className="celula-acao">
                             <button
                             className="botao-icone botao-editar"
-                            data-tooltip="Editar produto"
-                            aria-label="Editar produto"
-                            onClick={() => navigate('/produtos/editar/' + produto.id)}
+                            data-tooltip="Editar curso"
+                            aria-label="Editar curso"
+                            onClick={() => navigate('/cursos/editar/' + curso.id)}
                             >
                             <IconeLapis />
                             </button>
@@ -166,8 +166,8 @@ function ListaCursos() {
                 </table>
             )}
 
-            {produtoParaApagar && (
-                <Modal mensagem={'Deseja realmente apagar o produto ' + produtoParaApagar.id + ' - ' + produtoParaApagar.nome + '?'}>
+            {cursoParaApagar && (
+                <Modal mensagem={'Deseja realmente apagar o curso ' + cursoParaApagar.id + ' - ' + cursoParaApagar.nome + '?'}>
                 <button className="botao botao-secundario" onClick={cancelarApagar}>Cancelar</button>
                 <button className="botao botao-perigo" onClick={confirmarApagar}>Apagar</button>
                 </Modal>
