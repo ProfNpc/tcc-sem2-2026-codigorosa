@@ -36,6 +36,7 @@ function ListaCursos() {
     setErro('');
     try {
       const lista = await listarCursos();
+      console.log(lista);
       setCursos(lista);
     } catch (e) {
       setErro('Não foi possível carregar os cursos. ' + e.message);
@@ -120,8 +121,6 @@ function ListaCursos() {
                     <th>id</th>
                     <th>nome</th>
                     <th>descrição</th>
-                    <th>preco</th>
-                    <th>dataCriacao</th>
                     <th></th>
                     <th></th>
                     </tr>
@@ -133,8 +132,8 @@ function ListaCursos() {
                     </tr>
                     ) : (
                     cursos.map((curso) => (
-                        <tr key={curso.id}>
-                        <td>{curso.id}</td>
+                        <tr key={curso.idCurso}>
+                        <td>{curso.idCurso}</td>
                         <td>{curso.nome}</td>
                         <td>{curso.descricao}</td>
                         <td className="numero">{formatarPreco(curso.preco)}</td>
