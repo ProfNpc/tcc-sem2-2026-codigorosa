@@ -15,25 +15,16 @@ async function lerErro(resposta) {
 
 export async function listarCursos() {
 
-    console.log('Aqui...');
-  /*
-  const resposta = await fetch(API_URL);
+    const resposta = await fetch(API_URL);
   if (!resposta.ok) {
     throw await lerErro(resposta);
   }
   return resposta.json();
-  */
 
-  return [
-        {
-            id: 1,
-            nome: 'Java',
-            descricao: 'Curso de Java Basico',
-            preco: 1.23,
-            dataCriacao: '01/01/2026'
-        }
-    ];
+
 }
+
+
 
 export async function buscarCurso(id) {
   const resposta = await fetch(API_URL + '/' + id);
