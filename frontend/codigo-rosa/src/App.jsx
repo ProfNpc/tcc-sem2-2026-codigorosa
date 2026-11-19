@@ -8,7 +8,10 @@ import Sobre from './pages/sobre'
 import Conteudos from './pages/conteudos'
 import Comunidade from './pages/comunidade'
 import Cadastro from './pages/cadastro'
+import ListaCursos from './pages/ListaCursos'
+import EditarCurso from './pages/EditarCurso'
 import Login from './pages/login'
+import NovoCurso from './pages/NovoCurso'
 
 function App() {
   return (
@@ -20,7 +23,11 @@ function App() {
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/conteudos" element={<Conteudos />} />
         <Route path="/comunidade" element={<Comunidade />} />
-        <Route path="/cadastro" element={<Cadastro />} />
+        {/* <Route path="/cadastro" element={<Cadastro />} /> */}
+        <Route path="/cursos" element={<ListaCursos />} />
+        <Route path="/cursos/editar/:id" element={<EditarCurso />} />
+        <Route path="/cursos/novo" element={<NovoCurso />} />☻
+        <Route path="/sobre" element={<Sobre />} />
         <Route path="/login" element={<Login />} />
       </Routes>
 
